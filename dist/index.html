@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+<script defer src="index.bundle.js"></script></head>
+<body>
+    <div id="content">
+        <div id="header" class="header">To Do List</div>
+        <div class="lists" id="lists">
+            <div class="section">
+                <div id="home" class="sectionHeader">Home</div>
+                <button id="allItems" class="list selected">All</button>
+                <button id="today" class="list">Today</button>
+                <button id="overdue" class="list">Overdue</button>
+                <button id="nextWeek" class="list">Next 7 Days</button>
+            </div>
+            <div class="section">
+                <div class="sectionHeader">Projects</div>
+                <div id="projects"></div>
+                <div id="projectForm" class="projectForm">
+                    <form>
+                        <input type="text" id="projectName" name="projectName" placeholder="Project Name" maxlength="20">
+                        <button type="button" id="submitProject">Submit</button>
+                        <button type="button" id="closeProjectForm">Close</button>
+                    </form>
+                  </div>
+                <button class="makeProject" id="makeProject">Create New Project</button>
+            </div>
+        </div>
+        <div class="items" id="items">
+            <div id="itemTitle" class="itemTitle">All</div>
+            <div id="cards" class="cards"></div>
+        </div>
+        <button id="makeItem" class="makeItem">+</button>
+        <div id="popupForm" class="popup">
+            <div id="popup-content" class="popup-content">
+              <h2>Create a New Task</h2>
+              <form>
+                <input type="text" id="createTask" placeholder="Title">
+                <input type="text" id='taskDescription' placeholder="Description">
+                <input type="date" id="dueDate" placeholder="Due Date">
+                <button type="button">Submit</button>
+              </form>
+            </div>
+          </div>
+    </div>
+    
+</body>
+</html>

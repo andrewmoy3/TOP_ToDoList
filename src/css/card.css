@@ -1,0 +1,33 @@
+.cards{
+    display: flex;
+}
+
+.card {
+    display: flex;
+    border: 2px solid #062640;
+    background-color: #FCECC9;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 100px;
+    height: 100px;
+    margin: 0;
+  }
+  
+.card-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    margin-bottom: 16px;
+}
+
+.card-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
