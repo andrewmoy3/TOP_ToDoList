@@ -28,6 +28,11 @@
     margin-top: 10px;
   }
   
+#itemForm{
+  display: flex;
+  flex-direction: column;
+}
+
 .projectForm{
   display: none;
 }

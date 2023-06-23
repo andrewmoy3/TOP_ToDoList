@@ -38,11 +38,15 @@
         <div id="popupForm" class="popup">
             <div id="popup-content" class="popup-content">
               <h2>Create a New Task</h2>
-              <form>
+              <form id="itemForm">
                 <input type="text" id="createTask" placeholder="Title">
                 <input type="text" id='taskDescription' placeholder="Description">
                 <input type="date" id="dueDate" placeholder="Due Date">
-                <button type="button">Submit</button>
+                <input type="time" id="dueTime" placeholder="Time" value="00:00">
+                <label><input type="radio" name="priority" value="high">High</label>
+                <label><input type="radio" name="priority" value="medium">Medium</label>
+                <label><input type="radio" name="priority" value="low">Low</label>
+                <button type="button" id="submitTask">Submit</button>
               </form>
             </div>
           </div>

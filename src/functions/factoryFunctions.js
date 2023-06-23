@@ -1,26 +1,31 @@
 // Factory function creating items for to do list
-export function ToDo(title, description, dueDate, priority, list){
+export function ToDo(title, description, dueDate, dueTime, priority, finished){
     return {
         title: title || null,
         description: description || null,
-        dueDate: dueDate ||null,
+        dueDate: dueDate || null,
+        dueTime: dueTime || null,
         priority: priority || null,
-        list: list|| null,
+        finished: false;
     }
 }
 
 // Factory function creating lists containing items
-export function List(...args){
-    let title = null;
-    let items = args;
+export function List(name, standard){
+    let title = name;
+    let std = standard;
+    let items = [];
     const addItem = (item) => {
         items.push(item);
-        console.log(items)
     };
     const getItems = () => items;
+    const getName = () => title;
+    const getStd = () => std;
 
     return {
         addItem,
         getItems,
+        getName,
+        getStd,
     };
 };

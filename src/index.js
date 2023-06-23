@@ -5,14 +5,15 @@ import buttonHandler from './functions/buttonHandler';
 import { displayItems, displayProjects} from './functions/displayItems';
 import { List, ToDo } from './functions/factoryFunctions';
 
-//List of Lists of ToDos
-const ProjectList = List("All", "Today", "Next 7 Days", "Overdue");
+//Object of Lists of ToDos
+const ProjectList = {
+    all: List("all",true),
+    today: List("today",true),
+    "next 7 days": List("next 7 days",true),
+    overdue: List("overdue",true),
+};
 buttonHandler(ProjectList);
 
-const projects = List();
-projects.addItem("Homework");
-
-// let listOne = List();
-// listOne.addItem(ToDo('Laundry','Separate colors from whites','08-01-2023','high',));
-// listOne.addItem(ToDo('Cook Dinner','Spaghetti','08-01-2023','high',));
+ProjectList["all"].addItem(ToDo('Laundry','Two Loads','08-01-2023','high',));
+ProjectList["all"].addItem(ToDo('Cook Dinner','Spaghetti','08-01-2023','high',));
 // displayItems(listOne.getItems())
