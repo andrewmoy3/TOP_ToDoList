@@ -14,6 +14,5 @@ const ProjectList = {
 };
 buttonHandler(ProjectList);
 
-ProjectList["all"].addItem(ToDo('Laundry','Two Loads','08-01-2023','high',));
-ProjectList["all"].addItem(ToDo('Cook Dinner','Spaghetti','08-01-2023','high',));
-// displayItems(listOne.getItems())
+ProjectList["all"].addItem(ToDo('Laundry','Two Loads','08-01-2023',"00:00",'high',));
+ProjectList["all"].addItem(ToDo('Cook Dinner','Spaghetti','08-01-2023',"00:00",'medium',));

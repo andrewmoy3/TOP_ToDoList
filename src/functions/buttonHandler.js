@@ -17,8 +17,7 @@ const buttonHandler = function(ProjectList) {
                 }
                 button.classList.add("selected");
                 itemTitle.textContent = button.textContent;
-                // console.log(ProjectList)
-                displayItems(ProjectList[itemTitle.textContent.toLowerCase()])
+                displayItems(ProjectList,itemTitle.textContent.toLowerCase())
             })
         }
     }
@@ -33,9 +32,11 @@ const buttonHandler = function(ProjectList) {
     const taskDescriptionInput = popupForm.querySelector('#taskDescription');
     const dueDateInput = popupForm.querySelector('#dueDate');
     const dueTimeInput = popupForm.querySelector('#dueTime');
+    const listButtons = popupForm.querySelector('#listButtons');
 
     openPopupBtn.addEventListener("click", () => {
         popupForm.style.display = "block";
+        listButtons.innerHTML = '';
         for (const key in ProjectList) {
             if (ProjectList.hasOwnProperty(key) && ProjectList[key].getStd() !== true) {
               const label = document.createElement('label');
@@ -46,7 +47,7 @@ const buttonHandler = function(ProjectList) {
               label.appendChild(checkbox);
               label.appendChild(document.createTextNode(ProjectList[key].getName()));
           
-              itemForm.insertBefore(label,itemForm.lastElementChild);
+              listButtons.appendChild(label)
             }
           }
     });
@@ -62,18 +63,19 @@ const buttonHandler = function(ProjectList) {
         const date = dueDateInput.value;
         const time = dueTimeInput.value;
         const prio = document.querySelector('input[name="priority"]:checked') ? document.querySelector('input[name="priority"]:checked').value : null;
-        
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        const task = ToDo(name,descrip,date,time,prio,);
+
         checkboxes.forEach((checkbox) => {
           if (checkbox.checked) {
-            ProjectList[checkbox].addItem(ToDo(name,descrip,date,time,prio))
+            ProjectList[checkbox.name].addItem(task)
           }
         });
-        ProjectList.all.addItem(ToDo(name,descrip,date,time,prio))
-        // ProjectList[itemTitle.textContent.toLowerCase()].addItem(ToDo(name,descrip,date,time,prio,lists))
+        ProjectList.all.addItem(task)
         popupForm.style.display = "none";
     });
-    popupContent.addEventListener('keydown', (event) => {
+    popupForm.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             event.preventDefault(); 
             submitTask.click();
@@ -111,7 +113,7 @@ const buttonHandler = function(ProjectList) {
             }
             project.classList.add("selected");
             itemTitle.textContent = project.textContent;
-            displayItems(ProjectList[project.textContent])
+            displayItems(ProjectList,project.textContent)
         })
     });
     projectName.addEventListener('keydown', (event) => {

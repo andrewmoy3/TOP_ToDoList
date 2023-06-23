@@ -1,50 +1,78 @@
 import changeDom from "./changeDom";
 
-export function displayItems(list){
+export function displayItems(ProjectList, listName){
     const body = document.getElementById('cards');
     body.innerHTML = '';
+    const list = ProjectList[listName]
     for(const item of list.getItems()){
         let card = document.createElement('div');
         card.classList = 'card';
         card.style.position = 'relative';
 
-
         let title = document.createElement('div');
         title.classList = 'card-title';
         title.textContent = item.title;
         card.appendChild(title)
+        let dueDate = document.createElement('div');
+        dueDate.classList = 'dueDate';
+        dueDate.textContent = item.dueDate;
+        card.appendChild(dueDate)
+        let dueTime = document.createElement('dueTime');
+        dueTime.classList = 'dueTime';
+        dueTime.textContent = item.dueTime;
+        card.appendChild(dueTime)
+        const prio = item.priority;
+        console.log(prio)
+        if(prio == 'high'){
+          card.style.borderColor = 'red';
+        }else if(prio == 'medium'){
+          card.style.borderColor = 'yellow';
+        }else if(prio == 'low'){
+          card.style.borderColor = 'green';
+        }
 
         const circle = document.createElement('div');
-        circle.style.position = 'absolute';
-        circle.style.bottom = '10px';
-        circle.style.right = '10px';
-        circle.style.width = '30px';
-        circle.style.height = '30px';
-        circle.style.borderRadius = '50%';
-        circle.style.border = '1px solid #000';
-        circle.style.backgroundColor = '#FFF';
-        circle.style.cursor = 'pointer';
-        
+        circle.classList = 'circle';
+
+        if (item.finished) {
+          circle.style.backgroundColor = '#00FF00'; // Apply checked color
+          card.style.textDecoration = 'line-through';
+          circle.textContent = '✔';
+        }
+        // Append circle to container
+        card.appendChild(circle);
+
         // Attach click event listener to circle
         circle.addEventListener('click', () => {
-          circle.classList.toggle('checked');
-          if (circle.classList.contains("checked")) {
+          item.finished = !item.finished;
+          if (item.finished) {
             circle.style.backgroundColor = '#00FF00'; // Apply checked color
             card.style.textDecoration = 'line-through';
             circle.textContent = '✔';
-            item.finished = true;
           } else {
             circle.style.backgroundColor = '#FFF'; // Apply unchecked color
             card.style.textDecoration = 'none';
             circle.textContent = '';
-            item.finished = false;
           }
         });
-        
-        // Append circle to container
-        card.appendChild(circle);
 
-        body.appendChild(card)
+        const closeItem = document.createElement('button');
+        closeItem.classList = "closeItem";
+        closeItem.textContent
+        closeItem.innerHTML = '&times;'; 
+
+        
+        // Add a click event listener to the button
+        closeItem.addEventListener('click', () => {
+          for(const lst in ProjectList){
+            ProjectList[lst].deleteItem(item);
+          }
+          displayItems(ProjectList, listName)
+        });
+        
+        card.appendChild(closeItem);
+        
+        body.appendChild(card);
     }
 }
 
